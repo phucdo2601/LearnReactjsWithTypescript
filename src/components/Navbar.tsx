@@ -6,6 +6,8 @@ import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import WelcomeMessage from './WelcomeMessage'
 import { ProgressContext } from '../contexts/ProgressContext';
 import { ThemeContext } from '../contexts/ThemeContext'
+import Login from './Login'
+import { AuthContext } from '../contexts/AuthContext'
 
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -24,6 +26,13 @@ const Navbar = () => {
      * moc context tu ProgressContextProvider
      */
     const {lastTime, status} = useContext(ProgressContext);
+
+    const {authInfo: {isAuthenticated}, toggleAuth} = useContext(AuthContext);
+
+    /**
+     * dat bien trang thai mo khung nhap login
+     */
+    const [loginOpen, setLoginOpen] = useState(false);
 
     /**
      * moc context tu ThemeContextProvider
@@ -97,11 +106,14 @@ const Navbar = () => {
                                 {time.toUTCString()}
                             </Typography>
                         </Box>
-                        <Button variant="contained">
-                            Login
+                        <Button variant="contained" onClick={
+                            isAuthenticated? toggleAuth.bind(this, ""):
+                            setLoginOpen.bind(this, true)
+                            }>
+                            {isAuthenticated ? "Logout":"Login" }
                         </Button>
                     </Box>
-
+                    <Login isOpen={loginOpen} handleClose={setLoginOpen} />
 
                 </Box>
             </Toolbar>
