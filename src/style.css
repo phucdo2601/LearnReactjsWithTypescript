@@ -190,6 +190,19 @@ h2 {
     font-weight: 500;
 }
 
+.login {
+    padding-top : 70px;
+    padding-left: 40px;
+}
+
+.login button {
+    margin-top: 40px;
+}
+
+.login p {
+    margin-top: 30px;
+}
+
 .tab_inactive {
     color: #A2A2A2;
 
