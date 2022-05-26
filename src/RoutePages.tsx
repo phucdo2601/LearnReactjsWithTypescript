@@ -10,6 +10,9 @@ import Tab3 from './components/Tab3';
 import Login from './components/Login';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import PublicRoute from './components/PublicRoute';
+import Users from './components/Users'
+import SingleUser from './components/SingleUser'
+import NewUser from './components/NewUser'
 
 const RoutePages = () => {
   return (
@@ -30,6 +33,9 @@ const RoutePages = () => {
                 <Route path="tab3" element={<Tab3 />} />
               </Route>
               <Route path="settings" element={<Settings />} />
+              <Route path="Users" element={<Users extraItem="Test By Phuc Do" />} />
+              <Route path="users/:userId" element={<SingleUser />} />
+              <Route path="users/new" element={<NewUser />} />
             </Route>
           </Route>
 

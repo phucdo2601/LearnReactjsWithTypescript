@@ -34,6 +34,7 @@ const Sidebar = () => {
                             <NavLink to="/dashboard" className={location.pathname === '/dashboard' ? "sidebar_active" : ""}>Dashboard</NavLink>
                             <NavLink to="/tabs" className={location.pathname.includes("/tabs") ? "sidebar_active" : ""}>Tabs</NavLink>
                             <NavLink to="/settings" className={location.pathname === '/settings' ? "sidebar_active" : ""}>Settings</NavLink>
+                            <NavLink to="/users" className={location.pathname === '/users' ? "sidebar_active" : ""}>Users</NavLink>
                             {
                                 location.pathname !== "/login" && <button onClick={logoutFunc}>Logout</button>
                             }
