@@ -1,25 +1,54 @@
-import React from 'react';
+import React, { forwardRef, useReducer, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { signInWithGoogle } from './utils/FirebaseAuthSetup';
+
+interface imageLogin {
+  imgSrc: string;
+}
+
+
 
 function App() {
+  const imgLogin = localStorage.getItem('profilePic') as string;
+
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const clickSignInWithGoogle = () => {
+    signInWithGoogle();
+
+  }
+
+  const signoutWithGoogle = () => {
+    localStorage.clear();
+    forceUpdate();
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        {
+          localStorage.getItem("name") === null ? (
+            <button className="login-with-google-btn" onClick={clickSignInWithGoogle}>
+              Sign in with Google
+            </button>
+          ) : (
+            <>
+              <button className="login-with-google-btn" onClick={signoutWithGoogle}>
+                SignOut Google
+              </button>
+              <h1>{localStorage.getItem("name")}</h1>
+              <h1>{localStorage.getItem("email")}</h1>
+              <img src={
+                imgLogin
+              } alt="" />
+            </>
+          )
+        }
+
+
+      </div>
+    </>
   );
 }
 
