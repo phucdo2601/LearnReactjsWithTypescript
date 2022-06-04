@@ -5,8 +5,14 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    /**
+     * Role Trong REACTJS +Router v6
+     * Admin
+     * User
+     */
+
     const login = () => {
-        localStorage.setItem("user", "true")
+        localStorage.setItem("user", JSON.stringify({ role: "Admin" }))
         navigate("/dashboard")
     }
 

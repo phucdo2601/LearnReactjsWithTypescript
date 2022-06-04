@@ -1,22 +1,76 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
 
+
+
 const useAuth = () => {
+
+    //get item from localStorage
+    let user: any;
+
+
     //we can use from actual server, context, localStorage
-    const user = localStorage.getItem("user");
+    const _user = localStorage.getItem("user");
+
+    if (_user) {
+        user = JSON.parse(_user);
+        console.log("user", user);
+
+    }
+
     if (user) {
-        return true;
+        return {
+            auth: true,
+            role: user.role
+        };
     } else {
-        return false;
+        return {
+            auth: false,
+            role: null
+        };
     }
 
 }
 
-const ProtectedRoutes = (props: any) => {
+/**
+ * protected Route state
+ */
+type ProtectedRoutesType = {
+    roleRequired?: "Admin" | "User" | "Lecturer" | "StaffTraingRoom";
+}
 
-    const auth = useAuth();
+const ProtectedRoutes = (props: ProtectedRoutesType) => {
 
-    return auth ? <Outlet /> : <Navigate to="/login" />;
+    const { auth, role } = useAuth();
+
+    /**
+     * if the role required is there or not
+     */
+    // if (props.roleRequired) {
+    //     return auth ? (
+    //         props.roleRequired === role ? (<Outlet />) :
+    //             (<Navigate to="/login" />)
+    //     ) : (<Navigate to="/login" />)
+    // } else {
+    //     return auth ? <Outlet /> : <Navigate to="/login" />;
+
+    // }
+
+    //if the role required is there or not
+    if (props.roleRequired) {
+        return auth ? (
+            props.roleRequired === role ? (
+                <Outlet />
+            ) : (
+                <Navigate to="/denied" />
+            )
+        ) : (
+            <Navigate to="/login" />
+        )
+    } else {
+        return auth ? <Outlet /> : <Navigate to="/login" />
+    }
+
 }
 
 export default ProtectedRoutes

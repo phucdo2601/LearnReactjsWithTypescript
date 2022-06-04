@@ -13,6 +13,7 @@ import PublicRoute from './components/PublicRoute';
 import Users from './components/Users'
 import SingleUser from './components/SingleUser'
 import NewUser from './components/NewUser'
+import PermissionDenied from './components/PermissionDenied'
 
 const RoutePages = () => {
   return (
@@ -29,7 +30,13 @@ const RoutePages = () => {
               <Route path="tabs" element={<Tabs />} >
                 <Route path="/tabs" element={<Navigate replace to="tab1" />} />
                 <Route path="tab1" element={<Tab1 />} />
-                <Route path="tab2" element={<Tab2 />} />
+
+                {/* trang can co dung phan quyen thi moi dc vao */}
+                <Route path="tab2" element={<ProtectedRoutes roleRequired='Admin' />}>
+                  <Route path="/tabs/tab2" element={<Tab2 />} />
+                </Route>
+
+
                 <Route path="tab3" element={<Tab3 />} />
               </Route>
               <Route path="settings" element={<Settings />} />
@@ -43,6 +50,8 @@ const RoutePages = () => {
             <Route path="/login" element={<Login />} />
           </Route >
 
+          {/* Permission denied route */}
+          <Route path="/denied" element={<PermissionDenied />} />
         </Routes>
       </div>
     </>
