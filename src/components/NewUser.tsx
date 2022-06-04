@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserType } from '../models/UserType'
 import "../../src/style.css";
 import { NavLink, useLocation } from 'react-router-dom';
 const NewUser = () => {
 
-    const location = useLocation()
+    const location = useLocation();
+
+    /**
+     * location state
+     */
+    const [locationState1, setLocationState1] = useState({
+        from: "",
+        userName: ""
+    });
 
     const [newUser, setNewUser] = useState<UserType>({
         id: 0,
@@ -15,6 +23,15 @@ const NewUser = () => {
         address: {}
 
     });
+
+    useEffect(() => {
+        console.log("location from new user", location);
+        if (location.state) {
+            let _state = location.state as any;
+            setLocationState1(_state);
+        }
+
+    }, [location])
 
     const handleChange = (e: any) => {
         console.log("handleChange", e.target.value);
@@ -46,7 +63,7 @@ const NewUser = () => {
         <>
             <div className="new-user">
                 <h1>
-                    Add a new user from:{locatioState.from} by {locatioState.userName}
+                    Add a new user from:{locationState1.from} by {locationState1.userName}
                 </h1>
                 <NavLink to="/users">Go back</NavLink>
 

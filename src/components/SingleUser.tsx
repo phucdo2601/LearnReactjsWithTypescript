@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { UserType } from '../models/UserType';
 
 const SingleUser = () => {
@@ -18,6 +18,7 @@ const SingleUser = () => {
 
     return (
         <>
+            <Link to='/users'>Go back</Link>
             {user && (<div className="users__card" key={user.id}>
 
                 <p>Name:<span className="normal">{user.name}</span> </p>

@@ -27,7 +27,7 @@ const RoutePages = () => {
               {/* Cach 2: dung Navigate de chuyen huong thang de route da dc khai bao  */}
               <Route path="/" element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="tabs" element={<Tabs />} >
+              <Route path="tabs" element={<Tabs props={{ userName: "Phuc Dn" }} />} >
                 <Route path="/tabs" element={<Navigate replace to="tab1" />} />
                 <Route path="tab1" element={<Tab1 />} />
 
@@ -40,7 +40,7 @@ const RoutePages = () => {
                 <Route path="tab3" element={<Tab3 />} />
               </Route>
               <Route path="settings" element={<Settings />} />
-              <Route path="Users" element={<Users extraItem="Test By Phuc Do" />} />
+              <Route path="users" element={<Users extraItem="Test By Phuc Do" />} />
               <Route path="users/:userId" element={<SingleUser />} />
               <Route path="users/new" element={<NewUser />} />
             </Route>

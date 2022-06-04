@@ -22,7 +22,7 @@ const Users = (props: any) => {
             <div className="users">
 
                 <h1>All List Users</h1>
-                <NavLink to="/users/new">Add a new User</NavLink>
+                <NavLink to="/users/new" state={{ from: "all users", userName: "Phucdn" }}>Add a new User</NavLink>
                 <div className="user__list">
                     {
                         users && users.map((user) => (
