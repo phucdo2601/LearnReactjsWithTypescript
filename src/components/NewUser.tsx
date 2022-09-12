@@ -75,7 +75,7 @@ const NewUser = () => {
                             name="name"
                             onChange={handleChange}
                             value={newUser.name}
-                            placeholder="John Doe"
+                            placeholder={locationState1.userName}
                         />
                     </div>
                     <div className="new-user__form-group">

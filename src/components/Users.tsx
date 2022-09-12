@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { UserType } from '../models/UserType';
 
 
@@ -22,7 +22,13 @@ const Users = (props: any) => {
             <div className="users">
 
                 <h1>All List Users</h1>
-                <NavLink to="/users/new" state={{ from: "all users", userName: "Phucdn" }}>Add a new User</NavLink>
+                {/* set state on NavLink of router -- cach nay tuong tu truyen id tren url nhung loi hon la co the truyen mot obj bao go nhieu phan tu */}
+                {/* <NavLink to="/users/new" state={{ from: "all users", userName: "Phucdn" }}>Add a new User</NavLink> */}
+
+                {/* set state on Link of router -- cach nay tuong tu truyen id tren url nhung loi hon la co the truyen mot obj bao go nhieu phan tu */}
+                <Link to="/users/new" state={{ from: "all users", userName: "Phuc Do Ngoc"}} >
+                    Add New User
+                </Link>
                 <div className="user__list">
                     {
                         users && users.map((user) => (
