@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import HeaderComp from "./components/HeaderComp";
+import { Route, Routes } from "react-router-dom";
+import HomeComp from "./components/HomeComp";
+import ParseExcelComp from "./components/ParseExcelComp";
+import ExportExcelComp from "./components/exportExcel/ExportExcelComp";
+import ReadExcelComp from "./components/readExcel/ReadExcelComp";
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HeaderComp />
+
+      <Routes>
+        <Route path="/" element={<HomeComp />} />
+        <Route path="/parse-excel" element={<ParseExcelComp />} />
+        <Route path="/read-excel" element={<ReadExcelComp />} />
+        <Route path="/export-excel" element={<ExportExcelComp />} />
+      </Routes>
+    </>
   );
 }
 
